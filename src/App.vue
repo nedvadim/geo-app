@@ -18,4 +18,8 @@ export default {
         box-sizing: border-box;
         font-family: Open Sans, sans-serif;
     }
+    .section-label {
+        font-size: 18px;
+        line-height: 25px;
+    }
 </style>

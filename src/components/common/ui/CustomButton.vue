@@ -1,12 +1,18 @@
 <template>
-    <button class="button error-style">
+    <button class="button" :class="{ 'disabled': disabled, 'primary-red': !disabled }">
         <slot></slot>
     </button>
 </template>
 
 <script>
   export default {
-    name: "CustomButton"
+    name: "CustomButton",
+    props: {
+      disabled: {
+        type: Boolean,
+        default: false
+      }
+    }
   }
 </script>
 
@@ -18,11 +24,15 @@
     color: #FFFFFF;
     cursor: pointer;
 }
+.disabled {
+    background-color: #E6E6E6;
+    cursor: not-allowed;
+}
 .button:focus {
     border: none;
     outline: none;
 }
-.error-style {
+.primary-red {
     background: #FF5252;
     opacity: 0.85;
 }

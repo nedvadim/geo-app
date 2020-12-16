@@ -1,6 +1,6 @@
 <template>
     <div class="ip-section">
-        <p class="ip-section-label">Ip Address</p>
+        <p class="section-label">Ip Address</p>
         <CustomInput class="ip-section-input" />
         <CustomButton class="ip-section-button">Get Information</CustomButton>
     </div>
@@ -26,10 +26,6 @@ import CustomButton from "../common/ui/CustomButton";
     .ip-section > * {
         margin-bottom: 1rem;
     }
-.ip-section-label {
-    font-size: 18px;
-    line-height: 25px;
-}
 .ip-section-input {
     width: 396px;
 }

@@ -29,6 +29,6 @@ import HistoryTableSection from "./HistoryTableSection/HistoryTableSection";
 
 <style scoped>
 .custom-card {
-    margin: 3rem auto;
+    margin: 1.6rem auto;
 }
 </style>
