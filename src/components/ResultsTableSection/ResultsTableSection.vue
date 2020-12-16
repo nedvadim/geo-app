@@ -1,6 +1,6 @@
 <template>
     <div class="results-section">
-        <p class="section-label">Results</p>
+        <p class="section-label">{{ $t('results') }}</p>
         <CustomTable :headers="headers" :dataset="dataset"/>
     </div>
 </template>

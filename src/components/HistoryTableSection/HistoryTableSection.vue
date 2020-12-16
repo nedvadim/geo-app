@@ -1,6 +1,6 @@
 <template>
     <div class="history-section">
-        <p class="section-label">History</p>
+        <p class="section-label">{{ $t('history') }}</p>
         <CustomTable class="history-section-table" :headers="headers" :dataset="dataset"/>
         <CustomButton class="clear-history-button" :disabled="true">Clear history</CustomButton>
     </div>

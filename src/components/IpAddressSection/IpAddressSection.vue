@@ -1,6 +1,6 @@
 <template>
     <div class="ip-section">
-        <p class="section-label">Ip Address</p>
+        <p class="section-label">{{ $t('ipAddress') }}</p>
         <CustomInput class="ip-section-input" />
         <CustomButton class="ip-section-button">Get Information</CustomButton>
     </div>

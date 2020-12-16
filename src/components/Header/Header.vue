@@ -1,7 +1,7 @@
 <template>
     <div class="header">
         <h1 class="header-title">GeoIP</h1>
-        <select v-model="locale" class="header-dropdown">
+        <select v-model="$i18n.locale" class="header-dropdown">
             <option v-for="(option, i) in localisationOptions" :value="option.value" :key="i">{{ option.label }}</option>
         </select>
     </div>
@@ -12,7 +12,6 @@
     name: "Header",
     data () {
       return {
-        locale: 'en',
       }
     },
     watch: {
