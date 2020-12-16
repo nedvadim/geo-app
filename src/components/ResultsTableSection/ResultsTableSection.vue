@@ -1,5 +1,7 @@
 <template>
-
+    <div>
+        results table
+    </div>
 </template>
 
 <script>
