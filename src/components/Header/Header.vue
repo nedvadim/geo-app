@@ -1,16 +1,29 @@
 <template>
     <div class="header">
         <h1 class="header-title">GeoIP</h1>
-        <CustomDropDown class="header-dropdown" />
+        <select v-model="locale" class="header-dropdown">
+            <option v-for="(option, i) in localisationOptions" :value="option.value" :key="i">{{ option.label }}</option>
+        </select>
     </div>
 </template>
 
 <script>
-    import CustomDropDown from "../common/ui/CustomDropDown";
   export default {
     name: "Header",
-    components: {
-      CustomDropDown
+    data () {
+      return {
+        locale: 'en',
+      }
+    },
+    watch: {
+      locale (val) {
+        this.$store.commit('SET_LOCALE', val);
+      }
+    },
+    computed: {
+      localisationOptions () {
+        return this.$store.getters.getLangOptions;
+      }
     }
   }
 </script>

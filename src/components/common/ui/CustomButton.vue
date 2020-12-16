@@ -36,4 +36,7 @@
     background: #FF5252;
     opacity: 0.85;
 }
+.primary-red:hover {
+    box-shadow: 0 0 20px rgba(255, 108, 108, 0.7);
+}
 </style>
