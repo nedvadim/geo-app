@@ -1,5 +1,5 @@
 <template>
-    <button class="button" :class="{ 'disabled': disabled, 'primary-red': !disabled }">
+    <button class="button" :class="{ 'disabled': disabled, 'primary-red': !disabled }" v-on="listeners">
         <slot></slot>
     </button>
 </template>
@@ -11,6 +11,13 @@
       disabled: {
         type: Boolean,
         default: false
+      }
+    },
+    computed: {
+      listeners() {
+        return {
+          ...this.$listeners
+        };
       }
     }
   }

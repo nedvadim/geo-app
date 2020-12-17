@@ -2,7 +2,7 @@
     <div class="ip-section">
         <p class="section-label">{{ $t('ipAddress') }}</p>
         <CustomInput class="ip-section-input" />
-        <CustomButton class="ip-section-button">Get Information</CustomButton>
+        <CustomButton @click="fetchData" class="ip-section-button">Get Information</CustomButton>
     </div>
 </template>
 
@@ -18,7 +18,7 @@ import CustomButton from "../common/ui/CustomButton";
     },
     data () {
       return {
-        ip: '1.1.1.1',
+        ip: '112.111.11.11',
         ipAddress: ''
       };
     },
@@ -26,19 +26,25 @@ import CustomButton from "../common/ui/CustomButton";
       ipAddress: {
         query: gql`query getIp($dynamicIp: String!) {
                     ipAddress(address: $dynamicIp) {
-                country {
-                  name
-                  languages {
-                    name
-                  }
-                }
-                city {
-                  continent {
-                    name
-                  }
-                }
-              }
-    }`,
+                        city {
+                          name
+                          location {
+                            long
+                            lat
+                          }
+                          timeZone {
+                            name
+                          }
+                          continent {
+                            id
+                          }
+                        }
+                        country {
+                          name
+                          alpha2Code
+                        }
+                    }
+                }`,
         // Static parameters
         variables() {
           return {
@@ -46,6 +52,16 @@ import CustomButton from "../common/ui/CustomButton";
           };
         },
       },
+    },
+    methods: {
+      async fetchData () {
+        try {
+          const res = await this.$apollo.queries.ipAddress.refetch(this.ip);
+          console.log(res);
+        } catch (e) {
+          console.error(e)
+        }
+      }
     }
   }
 </script>
