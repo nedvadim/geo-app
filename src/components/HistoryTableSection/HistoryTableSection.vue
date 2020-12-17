@@ -2,7 +2,7 @@
     <div class="history-section">
         <p class="section-label">{{ $t('history') }}</p>
         <CustomTable class="history-section-table" :headers="headers" :dataset="dataset"/>
-        <CustomButton class="clear-history-button" :disabled="noHistory" @click="clearHistory">Clear history</CustomButton>
+        <CustomButton class="clear-history-button" :disabled="noHistory" @click="clearHistory">{{ $t('clearHistory') }}</CustomButton>
     </div>
 </template>
 
@@ -17,7 +17,7 @@
     },
     computed: {
       headers () {
-        return this.$store.getters.getHistoryHeaders;
+        return [this.$t('ipAddress'), this.$t('country'), this.$t('city')];
       },
       dataset () {
         const history = this.$store.getters.getHistoryResults;
@@ -49,5 +49,10 @@
     }
     .clear-history-button {
         width: 300px;
+    }
+    @media only screen and (max-width: 650px) {
+        .history-section-table {
+            width: 100%;
+        }
     }
 </style>

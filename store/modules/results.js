@@ -1,18 +1,15 @@
 const results = {
   state: {
-    currentResultHeaders: ['IP address', 'Continent/code', 'Country/code', 'City', 'Time zone', 'Coordinates'],
-    historyHeaders: ['IP address', 'Country/code', 'City'],
+
     currentResult: [],
     historyResults: [],
     defaultCurrentResult: ['000.000.00.00', '', '', '', '', ''],
     defaultHistoryResults: [['000.000.00.00', '', '']]
   },
   getters: {
-    getCurrentResultHeaders: state => state.currentResultHeaders,
     getCurrentResult: state => state.currentResult,
     getDefaultCurrentResult: state => state.defaultCurrentResult,
 
-    getHistoryHeaders: state => state.historyHeaders,
     getHistoryResults: state => state.historyResults,
     getDefaultHistoryResults: state => state.defaultHistoryResults,
 
@@ -25,7 +22,7 @@ const results = {
       state.historyResults = [...state.historyResults, payload];
     },
     CLEAR_HISTORY: (state) => {
-      state.historyResults = [...state.defaultHistoryResults];
+      state.historyResults = [];
     }
   },
   actions: {

@@ -15,8 +15,10 @@
       }
     },
     watch: {
-      locale (val) {
-        this.$store.commit('SET_LOCALE', val);
+      '$i18n.locale': {
+        handler (val) {
+          this.$store.commit('SET_LOCALE', val);
+        }
       }
     },
     computed: {

@@ -2,7 +2,7 @@
     <div class="ip-section">
         <p class="section-label">{{ $t('ipAddress') }}</p>
         <CustomInput v-model="ip" class="ip-section-input" />
-        <CustomButton @click="handleIp" class="ip-section-button">Get Information</CustomButton>
+        <CustomButton @click="handleIp" class="ip-section-button">{{$t('getInformation')}}</CustomButton>
     </div>
 </template>
 

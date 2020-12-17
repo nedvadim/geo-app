@@ -14,12 +14,15 @@
     },
     computed: {
       headers () {
-        return this.$store.getters.getCurrentResultHeaders;
+        return [this.$t('ipAddress'), this.$t('continent'), this.$t('country'), this.$t('city'), this.$t('timeZone'), this.$t('coordinates')];
       },
       dataset () {
         const current = this.$store.getters.getCurrentResult;
         const defaultCurrent = this.$store.getters.getDefaultCurrentResult;
         return current.length ? current : defaultCurrent;
+      },
+      locale () {
+        return this.$store.getters.getLang;
       }
     }
   }
