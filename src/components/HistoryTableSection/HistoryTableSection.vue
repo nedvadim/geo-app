@@ -2,7 +2,7 @@
     <div class="history-section">
         <p class="section-label">{{ $t('history') }}</p>
         <CustomTable class="history-section-table" :headers="headers" :dataset="dataset"/>
-        <CustomButton class="clear-history-button" :disabled="true">Clear history</CustomButton>
+        <CustomButton class="clear-history-button" :disabled="noHistory" @click="clearHistory">Clear history</CustomButton>
     </div>
 </template>
 
@@ -15,15 +15,23 @@
       CustomTable,
       CustomButton
     },
-    data () {
-      return {
-        headers: ['hey', 'hey', 'ololo'],
-        dataset: [
-          {one: '45', two: '2235', three: '24234'},
-          {one: '67', two: '131', three: '35'},
-          {one: '45345', two: '436', three: '6'}
-        ]
-      };
+    computed: {
+      headers () {
+        return this.$store.getters.getHistoryHeaders;
+      },
+      dataset () {
+        const history = this.$store.getters.getHistoryResults;
+        const defaultHistory = this.$store.getters.getDefaultHistoryResults;
+        return history.length ? history : defaultHistory;
+      },
+      noHistory () {
+        return !this.$store.getters.getHistoryResults.length;
+      }
+    },
+    methods: {
+      clearHistory () {
+        this.$store.commit('CLEAR_HISTORY');
+      }
     }
   }
 </script>

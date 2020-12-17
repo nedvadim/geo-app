@@ -1,7 +1,7 @@
 <template>
     <div class="results-section">
         <p class="section-label">{{ $t('results') }}</p>
-        <CustomTable :headers="headers" :dataset="dataset"/>
+        <CustomTable :headers="headers" :dataset="[dataset]"/>
     </div>
 </template>
 
@@ -12,14 +12,14 @@
     components: {
       CustomTable
     },
-    data () {
-      return {
-        headers: ['IP address', 'Continent/code', 'Country/code', 'City', 'Time zone', 'Coordinates'],
-      };
-    },
     computed: {
+      headers () {
+        return this.$store.getters.getCurrentResultHeaders;
+      },
       dataset () {
-        return this.$store.getters.getCurrentResult;
+        const current = this.$store.getters.getCurrentResult;
+        const defaultCurrent = this.$store.getters.getDefaultCurrentResult;
+        return current.length ? current : defaultCurrent;
       }
     }
   }
