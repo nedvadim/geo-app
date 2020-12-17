@@ -1,5 +1,15 @@
 <template>
-    <input type="text" :label="label" class="input-styling" :placeholder="placeholder">
+    <div>
+<!--        <input type="text" :label="label" class="input-styling" :placeholder="placeholder">-->
+        <input-mask
+                class="input-styling"
+                mask="999.999.99.99" maskChar=" "
+                placeholder="000.000.00.00"
+                :always-show-mask="false"
+                :value="value"
+                @input="handleInput"
+        ></input-mask>
+    </div>
 </template>
 
 <script>
@@ -13,6 +23,14 @@
       label: {
         type: String,
         default: 'Label'
+      },
+      value: {
+        type: String
+      }
+    },
+    methods: {
+      handleInput(event) {
+        this.$emit("input", event);
       }
     }
   }

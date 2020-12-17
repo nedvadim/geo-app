@@ -6,8 +6,8 @@
                     {{ h }}
                 </th>
             </tr>
-            <tr v-for="(data, i) in dataset" :key="i">
-                <td v-for="(el, i) in Object.values(data)" :key="i">
+            <tr>
+                <td v-for="(el, i) in dataset" :key="i">
                     {{ el }}
                 </td>
             </tr>

@@ -1,8 +1,8 @@
 <template>
     <div class="ip-section">
         <p class="section-label">{{ $t('ipAddress') }}</p>
-        <CustomInput class="ip-section-input" />
-        <CustomButton @click="fetchData" class="ip-section-button">Get Information</CustomButton>
+        <CustomInput v-model="ip" class="ip-section-input" />
+        <CustomButton @click="handleIp" class="ip-section-button">Get Information</CustomButton>
     </div>
 </template>
 
@@ -18,8 +18,16 @@ import CustomButton from "../common/ui/CustomButton";
     },
     data () {
       return {
-        ip: '112.111.11.11',
-        ipAddress: ''
+        ip: '',
+        ipAddress: '',
+        resultsData: {
+          ip: '',
+          contCode: '',
+          countryCode: '',
+          city: '',
+          timeZone: '',
+          coords: ''
+        }
       };
     },
     apollo: {
@@ -36,7 +44,7 @@ import CustomButton from "../common/ui/CustomButton";
                             name
                           }
                           continent {
-                            id
+                            name
                           }
                         }
                         country {
@@ -45,22 +53,45 @@ import CustomButton from "../common/ui/CustomButton";
                         }
                     }
                 }`,
-        // Static parameters
-        variables() {
-          return {
-            dynamicIp: this.ip,
-          };
+        variables: {
+            dynamicIp: ''
         },
       },
     },
     methods: {
-      async fetchData () {
+      async handleIp () {
         try {
-          const res = await this.$apollo.queries.ipAddress.refetch(this.ip);
-          console.log(res);
+          const res = await this.$apollo.queries.ipAddress.refetch({dynamicIp: this.ip});
+          this.initResults(res);
+          this.updateStore();
         } catch (e) {
           console.error(e)
         }
+      },
+      initResults (res) {
+        const city = res.data.ipAddress.city;
+        const country = res.data.ipAddress.country;
+        if (!country) {
+          this.resultsData.countryCode = '-'
+        } else {
+          this.resultsData.countryCode = `${country.name || '-'} / ${country.alpha2Code || '-'}`
+        }
+        if (!city) {
+          this.resultsData.city = '-';
+          this.results.timeZone = '-';
+          this.resultsData.coords = '-';
+          this.resultsData.contCode = '-';
+        } else {
+          this.resultsData.city = city.name;
+          this.resultsData.timeZone = city.timeZone ? city.timeZone.name : '-';
+          this.resultsData.coords = city.location ? `${city.location.long.toFixed(1)}/${city.location.lat.toFixed(1)}` : '-';
+          this.resultsData.contCode = city.continent ? city.continent.name : '-';
+        }
+        this.resultsData.ip = this.ip;
+
+      },
+      updateStore () {
+        this.$store.dispatch('setResults', this.resultsData);
       }
     }
   }

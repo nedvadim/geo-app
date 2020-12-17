@@ -14,11 +14,13 @@
     },
     data () {
       return {
-        headers: ['IP address', 'Continent/code', 'Country/code'],
-        dataset: [
-          {one: '000.000.00.00', two: '', three: ''},
-        ]
+        headers: ['IP address', 'Continent/code', 'Country/code', 'City', 'Time zone', 'Coordinates'],
       };
+    },
+    computed: {
+      dataset () {
+        return this.$store.getters.getCurrentResult;
+      }
     }
   }
 </script>
