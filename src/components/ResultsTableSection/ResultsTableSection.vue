@@ -16,9 +16,7 @@
       return {
         headers: ['IP address', 'Continent/code', 'Country/code'],
         dataset: [
-          {one: '45', two: '2235', three: '24234'},
-          {one: '67', two: '131', three: '35'},
-          {one: '45345', two: '436', three: '6'}
+          {one: '000.000.00.00', two: '', three: ''},
         ]
       };
     }

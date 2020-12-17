@@ -18,32 +18,34 @@ import CustomButton from "../common/ui/CustomButton";
     },
     data () {
       return {
-        address: '',
+        ip: '1.1.1.1',
+        ipAddress: ''
       };
     },
     apollo: {
-      address: gql`
-{
-  client {
-    ipAddress {
-      city {
-        name
-        population
-        timeZone {
-          name
-        }
-      }
-      country {
-        name
-        currencies {
-          name
-          inGBP: convert(amount: 1, to: "GBP")
-        }
-      }
-    }
-  }
-}
-      `,
+      ipAddress: {
+        query: gql`query getIp($dynamicIp: String!) {
+                    ipAddress(address: $dynamicIp) {
+                country {
+                  name
+                  languages {
+                    name
+                  }
+                }
+                city {
+                  continent {
+                    name
+                  }
+                }
+              }
+    }`,
+        // Static parameters
+        variables() {
+          return {
+            dynamicIp: this.ip,
+          };
+        },
+      },
     }
   }
 </script>
