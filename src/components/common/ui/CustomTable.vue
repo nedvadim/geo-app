@@ -40,6 +40,7 @@
         padding: 8px;
         text-align: center;
         font-size: 12px;
+        color: #656565;
     }
     .table tr {
         border-bottom: 1px solid #CCCCCC;

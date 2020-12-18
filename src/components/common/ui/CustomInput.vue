@@ -1,8 +1,8 @@
 <template>
     <div>
-<!--        <input type="text" :label="label" class="input-styling" :placeholder="placeholder">-->
         <input-mask
                 class="input-styling"
+                :class="{ 'error': isError }"
                 mask="999.999.99.99" maskChar=" "
                 placeholder="000.000.00.00"
                 :always-show-mask="false"
@@ -26,6 +26,9 @@
       },
       value: {
         type: String
+      },
+      isError: {
+        type: Boolean
       }
     },
     methods: {
@@ -48,5 +51,8 @@
     .input-styling:focus {
         outline: none;
         border: 1px solid #656BF2;
+    }
+    .error {
+        border: 1px solid #FF6C6C;
     }
 </style>

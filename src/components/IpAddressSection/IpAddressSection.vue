@@ -1,7 +1,7 @@
 <template>
     <div class="ip-section">
         <p class="section-label">{{ $t('ipAddress') }}</p>
-        <CustomInput v-model="ip" class="ip-section-input" />
+        <CustomInput v-model="ip" class="ip-section-input" :is-error="isError"/>
         <CustomButton @click="handleIp" class="ip-section-button">{{$t('getInformation')}}</CustomButton>
     </div>
 </template>
@@ -20,6 +20,7 @@ import CustomButton from "../common/ui/CustomButton";
       return {
         ip: '',
         ipAddress: '',
+        isError: false,
         resultsData: {
           ip: '',
           contCode: '',
@@ -62,9 +63,11 @@ import CustomButton from "../common/ui/CustomButton";
       async handleIp () {
         try {
           const res = await this.$apollo.queries.ipAddress.refetch({dynamicIp: this.ip});
+          this.isError = false;
           this.initResults(res);
           this.updateStore();
         } catch (e) {
+          this.isError = true;
           console.error(e)
         }
       },
