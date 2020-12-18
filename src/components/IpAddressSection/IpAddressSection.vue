@@ -54,6 +54,7 @@ import CustomButton from "../common/ui/CustomButton";
                         }
                     }
                 }`,
+        errorPolicy: 'ignore',
         variables: {
             dynamicIp: ''
         },
