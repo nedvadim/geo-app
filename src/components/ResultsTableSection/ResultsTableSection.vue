@@ -1,7 +1,7 @@
 <template>
     <div class="results-section">
         <p class="section-label">{{ $t('results') }}</p>
-        <CustomTable :headers="headers" :dataset="[dataset]"/>
+        <CustomTable :dataset="dataset"/>
     </div>
 </template>
 
@@ -13,9 +13,6 @@
       CustomTable
     },
     computed: {
-      headers () {
-        return [this.$t('ipAddress'), this.$t('continent'), this.$t('country'), this.$t('city'), this.$t('timeZone'), this.$t('coordinates')];
-      },
       dataset () {
         const current = this.$store.getters.getCurrentResult;
         const defaultCurrent = this.$store.getters.getDefaultCurrentResult;

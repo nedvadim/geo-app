@@ -1,7 +1,7 @@
 <template>
     <div class="history-section">
         <p class="section-label">{{ $t('history') }}</p>
-        <CustomTable class="history-section-table" :headers="headers" :dataset="dataset"/>
+        <CustomTable class="history-section-table" :dataset="dataset"/>
         <CustomButton class="clear-history-button" :disabled="noHistory" @click="clearHistory">{{ $t('clearHistory') }}</CustomButton>
     </div>
 </template>
@@ -16,9 +16,6 @@
       CustomButton
     },
     computed: {
-      headers () {
-        return [this.$t('ipAddress'), this.$t('country'), this.$t('city')];
-      },
       dataset () {
         const history = this.$store.getters.getHistoryResults;
         const defaultHistory = this.$store.getters.getDefaultHistoryResults;

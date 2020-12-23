@@ -19,11 +19,13 @@
   export default {
     name: "CustomTable",
     props: {
-      headers: {
-        type: Array
-      },
       dataset: {
         type: Array
+      }
+    },
+    computed: {
+      headers () {
+        return Object.keys(this.dataset[0]).map(el => this.$t(el))
       }
     }
   }
@@ -49,6 +51,7 @@
         border-collapse: collapse;
         padding-top: 12px;
         padding-bottom: 12px;
+        border: 1px solid #656BF2;
         background-color: #656BF2;
         color: white;
         text-align: center;

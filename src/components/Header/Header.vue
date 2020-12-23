@@ -45,6 +45,14 @@
     margin: 0 auto;
 }
 .header-dropdown {
+    background-color: #656BF2;
     margin-right: 5rem;
+    border: none;
+    color: #FFFFFF;
+    cursor: pointer;
+}
+.header-dropdown:focus{
+    outline: none;
+    border: none;
 }
 </style>

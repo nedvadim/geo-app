@@ -22,12 +22,12 @@ import CustomButton from "../common/ui/CustomButton";
         ipAddress: '',
         isError: false,
         resultsData: {
-          ip: '',
-          contCode: '',
-          countryCode: '',
+          ipAddress: '',
+          continent: '',
+          country: '',
           city: '',
           timeZone: '',
-          coords: ''
+          coordinates: ''
         }
       };
     },
@@ -76,22 +76,22 @@ import CustomButton from "../common/ui/CustomButton";
         const city = res.data.ipAddress.city;
         const country = res.data.ipAddress.country;
         if (!country) {
-          this.resultsData.countryCode = '-'
+          this.resultsData.country = '-'
         } else {
-          this.resultsData.countryCode = `${country.name || '-'} / ${country.alpha2Code || '-'}`
+          this.resultsData.country = `${country.name || '-'} / ${country.alpha2Code || '-'}`
         }
         if (!city) {
           this.resultsData.city = '-';
           this.results.timeZone = '-';
-          this.resultsData.coords = '-';
-          this.resultsData.contCode = '-';
+          this.resultsData.coordinates = '-';
+          this.resultsData.continent = '-';
         } else {
           this.resultsData.city = city.name;
           this.resultsData.timeZone = city.timeZone ? city.timeZone.name : '-';
-          this.resultsData.coords = city.location ? `${city.location.long.toFixed(1)}/${city.location.lat.toFixed(1)}` : '-';
-          this.resultsData.contCode = city.continent ? city.continent.name : '-';
+          this.resultsData.coordinates = city.location ? `${city.location.long.toFixed(1)}/${city.location.lat.toFixed(1)}` : '-';
+          this.resultsData.continent = city.continent ? city.continent.name : '-';
         }
-        this.resultsData.ip = this.ip;
+        this.resultsData.ipAddress = this.ip;
 
       },
       updateStore () {
